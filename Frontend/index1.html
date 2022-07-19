@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<!--    <link rel="stylesheet" href="style.css">-->
+    <title>  House Price</title>
+      <style>
+          body {
+  background-color:white;
+}
+
+.inn{
+  height: 10%;
+  width:10%;
+  margin-right: 05%;
+  color: #eef3ff;
+}
+.i1{
+  height: 45px;
+  width: 300px;
+border: none;
+border-radius: 10px;
+padding-left:20px;
+}
+
+.logo{
+  height: 60px;
+  width: 65px;
+}
+
+.headd{
+
+  font-size: 80px;
+  color: #2F4F4F;
+}
+input[type=text] {
+  background-color:#eef3ff;
+
+}
+input[type=number] {
+  background-color:#eef3ff ;
+}
+select{
+  background-color:#eef3ff;
+  color:#6c757d ;
+}
+
+.butt1{
+  border-radius: 10px;
+  background-color: #3f51b5;
+  color:white;
+  margin-left: 55%;
+  border:none;
+  padding:12px 25px ;
+ text-decoration: none;
+}
+
+.head1{
+  font-size: 25px;
+
+  color: #3f51b5;
+}
+footer{
+  width: inherit;
+  height:auto;
+position: absolute;
+
+  left:0;
+
+}
+.nav-item{
+  margin-right: 50px;
+}
+
+      </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="logo">
+        <img src="../static/a.png" class="w3-border w3-padding" style="width:100%">
+
+      </div>
+    <div class="container-fluid">
+        <a href="#" class="navbar-brand">House Price Prediction</a>
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+        </div>
+    </div>
+</nav>
+
+
+    <center>
+      <br><br>
+
+<!--<h1 class="headd" >HOUSE PRICE PREDICTION</h1>-->
+<br>
+<h1 class="head1"> * Enter the Information of House to Predict the Price *</h1>  </center>
+<br>
+    <center><form class="inn" action="{{ url_for('predict')}}"method="post">
+  <input class="i1"  type="number" name="bathrooms"  placeholder="Bathrooms" required="required"  step="1"/><br><br>
+      <input class="i1" type="number" name="balcony" placeholder="Balcony" required="required"  step="1"/><br><br>
+      <input class="i1" type="number" name="total_sqft_int" placeholder="Total Squre Foot" required="required"  step="50"/><br><br>
+      <input class="i1" type="number" name="bhk" placeholder="BHK" required="required"  step="1"/><br><br>
+      <input class="i1" type="number" name="price_per_sqft" placeholder="Price Per Squre Foot"  step="50"/><br><br>
+<!--      <input class="i1" type="text" name="area_type" placeholder="Area Type" /><br><br>-->
+         <select style="color: #6c757d;"
+                class="i1"  type="text" name="area_type" >
+            <option value=""  disabled selected hidden >Area Type</option>
+            <option value="Super built-up Area">Super built-up Area</option>
+            <option value="Plot Area">Plot Area</option>
+            <option value="Built-up Area">Built-up Area</option>
+         </select><br><br>
+      <input class="i1" type="text" name="availability" placeholder="House Availability"/><br><br>
+        <select
+                class="i1"  type="text" name="location" required="required">
+            <option value=""  disabled selected hidden >Location</option>
+            <option value="Whitefield">Whitefield</option>
+            <option value="Sarjapur  Road">Sarjapur  Road</option>
+            <option value="Electronic City">Electronic City</option>
+            <option value="Marathahalli">Marathahalli  </option>
+            <option value="Raja Rajeshwari Nagar ">Raja Rajeshwari Nagar </option>
+            <option value="Haralur Road">Haralur Road</option>
+            <option value="Yelahanka">Yelahanka</option>
+            <option value="Sarjapur">Sarjapur</option>
+            <option value="Banashankari">Banashankari</option>
+            <option value="HSR Layout">HSR Layout</option>
+            <option value="Koramangala">Koramangala</option>
+            <option value="Yeshwanthpur">Yeshwanthpur</option>
+            <option value="Bisuvanahalli">Bisuvanahalli</option>
+             <option value="Vijayanagar">Vijayanagar</option>
+            <option value="Frazer Town">Frazer Town</option>
+            <option value="Kanakapura">Kanakapura</option>
+            <option value="BTM Layout">BTM Layout</option>
+            <option value="Silk Board">Silk Board</option>
+            <option value="Rajarajeshwari nagar">Rajarajeshwari nagar</option>
+            <option value="Neelamangala">Neelamangala</option>
+
+
+
+
+        </select><br><br>
+<!--      <input class="i1"type="text" name="location" placeholder="House Location" required="required" /><br><br>-->
+        <button class="butt1" type="submit" class="btn1" value="submit"><strong>Predict </strong></button></a>
+
+
+
+    </form>
+    <br><br>
+
+    </center>
+
+
+  <div id="myDIV">
+       <center>
+   <h2>{{ prediction_text }}</h2>
+       </center>
+   </div>
+    <br>
+    <br>
+    <!-- Remove the container if you want to extend the Footer to full width. -->
+    <div class="container my-5">
+      <!-- Footer -->
+<!--      <footer class="text-center text-white" style="background-color: #3f51b5">-->
+<!--        &lt;!&ndash; Grid container &ndash;&gt;-->
+<!--        <div class="container">-->
+<!--          &lt;!&ndash; Section: Links &ndash;&gt;-->
+<!--          <section class="mt-5">-->
+<!--            &lt;!&ndash; Grid row&ndash;&gt;-->
+<!--            <div class="row text-center d-flex justify-content-center pt-5">-->
+<!--              &lt;!&ndash; Grid column &ndash;&gt;-->
+<!--              <div class="col-md-2">-->
+<!--                <h6 class="text-uppercase font-weight-bold">-->
+<!--                  <a href="#!" class="text-white">About us</a>-->
+<!--                </h6>-->
+<!--              </div>-->
+<!--              &lt;!&ndash; Grid column &ndash;&gt;-->
+
+<!--              &lt;!&ndash; Grid column &ndash;&gt;-->
+
+<!--              &lt;!&ndash; Grid column &ndash;&gt;-->
+
+<!--              &lt;!&ndash; Grid column &ndash;&gt;-->
+
+<!--              &lt;!&ndash; Grid column &ndash;&gt;-->
+
+<!--              &lt;!&ndash; Grid column &ndash;&gt;-->
+<!--              <div class="col-md-2">-->
+<!--                <h6 class="text-uppercase font-weight-bold">-->
+<!--                  <a href="#!" class="text-white">Help</a>-->
+<!--                </h6>-->
+<!--              </div>-->
+<!--              &lt;!&ndash; Grid column &ndash;&gt;-->
+
+<!--              &lt;!&ndash; Grid column &ndash;&gt;-->
+<!--              <div class="col-md-2">-->
+<!--                <h6 class="text-uppercase font-weight-bold">-->
+<!--                  <a href="#!" class="text-white">Contact</a>-->
+<!--                </h6>-->
+<!--              </div>-->
+<!--              &lt;!&ndash; Grid column &ndash;&gt;-->
+<!--            </div>-->
+<!--            &lt;!&ndash; Grid row&ndash;&gt;-->
+<!--          </section>-->
+<!--          &lt;!&ndash; Section: Links &ndash;&gt;-->
+
+<!--          <hr class="my-5" />-->
+
+<!--          &lt;!&ndash; Section: Text &ndash;&gt;-->
+
+<!--          &lt;!&ndash; Section: Text &ndash;&gt;-->
+
+<!--          &lt;!&ndash; Section: Social &ndash;&gt;-->
+<!--          <section class="text-center mb-5">-->
+<!--            <a href="" class="text-white me-4">-->
+<!--              <i class="fab fa-facebook-f"></i>-->
+<!--            </a>-->
+<!--            <a href="" class="text-white me-4">-->
+<!--              <i class="fab fa-twitter"></i>-->
+<!--            </a>-->
+<!--            <a href="" class="text-white me-4">-->
+<!--              <i class="fab fa-google"></i>-->
+<!--            </a>-->
+<!--            <a href="" class="text-white me-4">-->
+<!--              <i class="fab fa-instagram"></i>-->
+<!--            </a>-->
+<!--            <a href="" class="text-white me-4">-->
+<!--              <i class="fab fa-linkedin"></i>-->
+<!--            </a>-->
+<!--            <a href="" class="text-white me-4">-->
+<!--              <i class="fab fa-github"></i>-->
+<!--            </a>-->
+<!--          </section>-->
+<!--          &lt;!&ndash; Section: Social &ndash;&gt;-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Grid container &ndash;&gt;-->
+
+<!--        &lt;!&ndash; Copyright &ndash;&gt;-->
+<!--        <div-->
+<!--             class="text-center p-3"-->
+<!--             style="background-color: rgba(0, 0, 0, 0.2)"-->
+<!--             >-->
+<!--          © 2022 Copyright:  &nbsp;-->
+<!--          <a class="text-white" href="https://mdbootstrap.com"-->
+<!--             >HOUSE PRICE PREDICTION</a-->
+<!--            >-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Copyright &ndash;&gt;-->
+<!--      </footer>-->
+      <!-- Footer -->
+    </div>
+    <!-- End of .container -->
+  </body>
+</html>
